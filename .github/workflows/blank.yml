@@ -1,8 +1,12 @@
-name : Hello
-on : workflow_dispatch
-jobs : 
-  hello:
-    runs-on: ubuntu-latest
-    steps:
-      - name: hello_step
-        run: echo " Welcome to github action"
+name : Hello #name of workflow
+on : workflow_dispatch #this says that workflow runs on manual trigger
+jobs : #jobs that workflow should do when triggered
+  hello: #name of our job 1
+    runs-on: ubuntu-latest # runs on which 
+    steps: #steps the jobs should follow
+      - name: hello_step #first step name
+        # run: echo " Welcome to github action" # to run single command
+        # to run multiple commands
+        run: |
+          echo "Line one"
+          echo "Line two"
