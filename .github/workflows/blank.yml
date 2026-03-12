@@ -140,11 +140,27 @@
 # variables holds peice of information and are used to store non sensitive data. For sensitive data we use secrets in github actions.
 
 #after creating a custom var we use it in our job workflow like this
-name : Hello 
-on : push 
-jobs : 
-  build: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Build step
-        run : echo "Hello, ${{ vars.MY_NAME }}"
+# name : Hello 
+# on : push 
+# jobs : 
+#   build: 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Build step
+#         run : echo "Hello, ${{ vars.MY_NAME }}"
+
+
+
+
+#secrets : used to store sensitive data like API keys, passwords, etc. 
+#Secrets are encrypted and can only be accessed by workflows and jobs that have permission to access them. 
+#Secrets are stored in the repository settings and can be accessed using the secrets context in github actions.
+
+name: Hello
+on: push
+jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Build Step
+         run: echo " ${{ secrets.DOCKER_PASSWORD }}"
