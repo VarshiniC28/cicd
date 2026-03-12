@@ -73,11 +73,38 @@
 # 4. Workflow trigger : one workflow can trigger another workflow using workflow_run event 
 
 # to trigger workflow on push event
+# name : Hello
+# on : push
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running"
+
+# # to trigger workflow on both pull and push events
+# name : Hello
+# on : ["push", "pull_request"]
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running"
+
+# to trigger workflow based on branches
 name : Hello
-on : push
+on : 
+  push:
+    branches : 
+      - main
+      - dev 
+  pull_request:
+    branches :
+      - main
 jobs :
   build:
     runs-on: ubuntu-latest
     steps:
       - name: build step
-        run: echo " build step running"
+        run: echo " build step running" 
