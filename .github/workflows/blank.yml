@@ -1,5 +1,5 @@
 #for single job
-
+# parallel jobs running
 # name : Hello #name of workflow
 # on : workflow_dispatch #this says that workflow runs on manual trigger
 # jobs : #jobs that workflow should do when triggered
