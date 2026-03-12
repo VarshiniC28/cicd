@@ -92,19 +92,49 @@
 #       - name: build step
 #         run: echo " build step running"
 
-# to trigger workflow based on branches
-name : Hello
-on : 
-  push:
-    branches : 
-      - main
-      - dev 
-  pull_request:
-    branches :
-      - main
-jobs :
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: build step
-        run: echo " build step running" 
+# # to trigger workflow based on branches and pull request from dev to target branch main
+# name : Hello
+# on : 
+#   push:
+#     branches : 
+#       - main
+#       - dev 
+#   pull_request:
+#     branches :
+#       - main
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running" 
+
+
+# # to trigger workflow only when pull request is opened
+# name : Hello
+# on : 
+#   push:
+#     branches : 
+#       - main
+#       - dev 
+#   pull_request:
+#     type:
+#       - opened
+#     branches :
+#       - main
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running" 
+
+
+#  ---------------------------------------
+
+# variables in github actions :
+# variables are used to store values that can be used in workflows and jobs. There are two types of variables in github actions :
+# 1. Environment variables : these are predefined variables that are available in all workflows and jobs. Ex: GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA, etc
+# 2. Custom variables : these are user defined variables that can be used in workflows and jobs. Ex: MY_VARIABLE, etc
+
+# variables holds peice of information and are used to store non sensitive data. For sensitive data we use secrets in github actions.
