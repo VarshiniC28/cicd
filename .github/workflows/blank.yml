@@ -1,12 +1,36 @@
+#for single job
+
+# name : Hello #name of workflow
+# on : workflow_dispatch #this says that workflow runs on manual trigger
+# jobs : #jobs that workflow should do when triggered
+#   hello: #name of our job 1
+#     runs-on: ubuntu-latest # runner where the job should run 
+#     steps: #steps the jobs should follow
+#       - name: hello_step #first step name
+#         # run: echo " Welcome to github action" # to run single command
+#         # to run multiple commands
+#         run: |
+#           echo "Line one"
+#           echo "Line two"
+
+# to create multiple jobs in single workflow
 name : Hello #name of workflow
 on : workflow_dispatch #this says that workflow runs on manual trigger
 jobs : #jobs that workflow should do when triggered
-  hello: #name of our job 1
-    runs-on: ubuntu-latest # runs on which 
-    steps: #steps the jobs should follow
-      - name: hello_step #first step name
-        # run: echo " Welcome to github action" # to run single command
-        # to run multiple commands
-        run: |
-          echo "Line one"
-          echo "Line two"
+  build: # mandatorily needs the runs-on field
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build step
+        run : echo "A demo build"
+  #2nd job is to test
+  test:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Test Phase
+          run : echo "Running test cases"
+  #3rd job is 
+  deploy :
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the app
+        run: echo "deploying the app"
