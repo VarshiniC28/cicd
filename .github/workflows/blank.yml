@@ -40,25 +40,44 @@
   # now to make jobs run sequentially, i.e only after build, test job should run and then test
   #  use needs as below
   
-name : Hello #name of workflow
-on : workflow_dispatch #this says that workflow runs on manual trigger
-jobs : #jobs that workflow should do when triggered
-  build: # mandatorily needs the runs-on field
+# name : Hello #name of workflow
+# on : workflow_dispatch #this says that workflow runs on manual trigger
+# jobs : #jobs that workflow should do when triggered
+#   build: # mandatorily needs the runs-on field
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Build step
+#         run : echo "A demo build"
+#   #2nd job is to test
+#   test:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     steps:
+#         - name: Test Phase
+#           run : echo "Running test cases"
+#   #3rd job is 
+#   deploy :
+#     runs-on: ubuntu-latest
+#     needs: test
+#     steps:
+#       - name: Deploy the app
+#         run: echo "deploying the app"
+
+
+
+# TRIGGERS :
+# Types of triggers :
+# 1. Event based trigger : when a specific event happens in the repository, workflow will be triggered. Ex: push, pull request, release, etc
+# 2. Schedule based trigger : workflow will be triggered at a specific time or interval. Ex: every day at 12 PM, every Monday, etc
+# 3. Manual trigger : workflow will be triggered manually by a user. Ex: using workflow_dispatch event
+# 4. Workflow trigger : one workflow can trigger another workflow using workflow_run event 
+
+# to trigger workflow on push event
+name : Hello
+on : push
+jobs :
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Build step
-        run : echo "A demo build"
-  #2nd job is to test
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-        - name: Test Phase
-          run : echo "Running test cases"
-  #3rd job is 
-  deploy :
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Deploy the app
-        run: echo "deploying the app"
+      - name: build step
+        run: echo " build step running"
