@@ -73,11 +73,94 @@
 # 4. Workflow trigger : one workflow can trigger another workflow using workflow_run event 
 
 # to trigger workflow on push event
-name : Hello
-on : push
-jobs :
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: build step
-        run: echo " build step running"
+# name : Hello
+# on : push
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running"
+
+# # to trigger workflow on both pull and push events
+# name : Hello
+# on : ["push", "pull_request"]
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running"
+
+# # to trigger workflow based on branches and pull request from dev to target branch main
+# name : Hello
+# on : 
+#   push:
+#     branches : 
+#       - main
+#       - dev 
+#   pull_request:
+#     branches :
+#       - main
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running" 
+
+
+# # to trigger workflow only when pull request is opened
+# name : Hello
+# on : 
+#   push:
+#     branches : 
+#       - main
+#       - dev 
+#   pull_request:
+#     type:
+#       - opened
+#     branches :
+#       - main
+# jobs :
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: build step
+#         run: echo " build step running" 
+
+
+#  ---------------------------------------
+
+# variables in github actions :
+# variables are used to store values that can be used in workflows and jobs. There are two types of variables in github actions :
+# 1. Environment variables : these are predefined variables that are available in all workflows and jobs. Ex: GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA, etc
+# 2. Custom variables : these are user defined variables that can be used in workflows and jobs. Ex: MY_VARIABLE, etc
+
+# variables holds peice of information and are used to store non sensitive data. For sensitive data we use secrets in github actions.
+
+#after creating a custom var we use it in our job workflow like this
+# name : Hello 
+# on : push 
+# jobs : 
+#   build: 
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Build step
+#         run : echo "Hello, ${{ vars.MY_NAME }}"
+
+
+
+
+#secrets : used to store sensitive data like API keys, passwords, etc. 
+#Secrets are encrypted and can only be accessed by workflows and jobs that have permission to access them. 
+#Secrets are stored in the repository settings and can be accessed using the secrets context in github actions.
+
+name: Hello
+on: push
+jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Build Step
+         run: echo " ${{ secrets.DOCKER_PASSWORD }}"
