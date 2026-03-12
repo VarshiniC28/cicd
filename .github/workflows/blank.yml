@@ -138,3 +138,13 @@
 # 2. Custom variables : these are user defined variables that can be used in workflows and jobs. Ex: MY_VARIABLE, etc
 
 # variables holds peice of information and are used to store non sensitive data. For sensitive data we use secrets in github actions.
+
+#after creating a custom var we use it in our job workflow like this
+name : Hello 
+on : push 
+jobs : 
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build step
+        run : echo "Hello, ${{ vars.MY_NAME }}"
