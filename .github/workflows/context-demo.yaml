@@ -5,10 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use context variables
-        run: |
-          echo "Workflow triggered by ${{ github.actor }}"
+        run: | #we access the context var in this way
+          echo "Workflow triggered by ${{ github.actor }}" 
           echo "Repo name : ${{ github.repository }}"
           echo "The branch is ${{ github.ref_name }}"
+
+      - name: Use environment vars
+        run: | #we access env vars in this way using just $ sign
+          echo "$GITHUB_SHA" 
+          echo "$GITHUB_REF"
 
       - name: Print all vars under github context object
         run: echo "${{ toJson(github) }}"
