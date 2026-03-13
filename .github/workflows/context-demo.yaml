@@ -8,3 +8,6 @@ jobs:
         run: |
           echo "Workflow triggered by ${{ github.actor }}"
           echo "Repo name : ${{ github.repository }}"
+
+      - name: Print all vars under github context object
+        run: "${{ toJson(github) }}"
