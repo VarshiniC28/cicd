@@ -10,4 +10,4 @@ jobs:
           echo "Repo name : ${{ github.repository }}"
 
       - name: Print all vars under github context object
-        run: "${{ toJson(github) }}"
+        run: echo "${{ toJson(github) }}"
