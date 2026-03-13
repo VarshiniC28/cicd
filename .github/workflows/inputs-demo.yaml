@@ -1,3 +1,21 @@
+# name: Inputs demo
+# on: 
+#   workflow_dispatch: #if we hav to use inputs the trigger should be manual trigger
+#     inputs:
+#       environment: #environment variable name here is default dev, but we can change it to test, prod
+#         description: Choose the environment to deploy
+#         required: true
+#         default: dev #can change to test , prod later
+# jobs:
+#   input-demo:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy the app
+#         run: echo "Deploying the application to ${{ inputs.environment }}"
+
+
+
+# now to give options to select environmnet variable as list instead of writing test, prod ourselves while we run workflow
 name: Inputs demo
 on: 
   workflow_dispatch: #if we hav to use inputs the trigger should be manual trigger
@@ -6,9 +24,17 @@ on:
         description: Choose the environment to deploy
         required: true
         default: dev #can change to test , deploy later
+        type: choice
+        options:
+          - dev
+          - test
+          - prod
+      artifact_tag:
+         description : Choose the git tag to deploy
+         required: true
 jobs:
   input-demo:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the app
-        run: echo "Deploying the application to ${{ inputs.environment }}"
+        run: echo "Deploying the ${{ inputs.artifact_tag }} to ${{ inputs.environment }}"
