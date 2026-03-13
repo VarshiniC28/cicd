@@ -156,11 +156,31 @@
 #Secrets are encrypted and can only be accessed by workflows and jobs that have permission to access them. 
 #Secrets are stored in the repository settings and can be accessed using the secrets context in github actions.
 
-name: Hello
-on: push
+# name: Hello
+# on: push
+# jobs:
+#    build:
+#      runs-on: ubuntu-latest
+#      steps:
+#        - name: Build Step
+#          run: echo " ${{ secrets.DOCKER_PASSWORD }}"
+
+
+
+#------------------------------------------------
+
+#Git hub actions: Action in git hub is a reusable application or set of code performs the specific task within the workflow
+# Checkout action
+
+name: Git hub action
+on: push 
 jobs:
-   build:
+   action-demo :
      runs-on: ubuntu-latest
      steps:
-       - name: Build Step
-         run: echo " ${{ secrets.DOCKER_PASSWORD }}"
+       - name: Checkout the action
+         uses: actions/checkout@v4  #uses keyword is used for using action in the workflow
+       - name: Print index.html file
+         run: cat index.html
+
+
