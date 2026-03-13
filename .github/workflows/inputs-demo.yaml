@@ -2,13 +2,13 @@ name: Inputs demo
 on: 
   workflow_dispatch: #if we hav to use inputs the trigger should be manual trigger
     inputs:
-      environment: #environment variable name here is environment
+      environment: #environment variable name here is default dev, but we can change it to test, deploy
         description: Choose the environment to deploy
         required: true
-        default: dev
+        default: dev #can change to test , deploy later
 jobs:
   input-demo:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the app
-        run: echo "Deploying the applocation to ${{ inputs.environment }}"
+        run: echo "Deploying the application to ${{ inputs.environment }}"
